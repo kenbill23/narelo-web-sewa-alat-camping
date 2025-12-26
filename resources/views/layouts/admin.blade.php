@@ -6,6 +6,7 @@
     <title>@yield('page-title','Admin Dashboard')</title>
 
     <!-- FONT MODERN ALAM -->
+
     <link href="https://fonts.googleapis.com/css2?family=Fauna+One&display=swap" rel="stylesheet">
 
     <!-- Bootstrap -->

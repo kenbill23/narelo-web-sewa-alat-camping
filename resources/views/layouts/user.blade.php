@@ -12,6 +12,9 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
+    <!-- GOOGLE FONT : POPPINS -->
+    <link href="https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">
+
     <style>
         :root {
             --green-1: #F6F0D7;
@@ -29,7 +32,9 @@
             display: flex;
             flex-direction: column;
             background-color: var(--green-1);
+            font-family: 'Karla', sans-serif;
         }
+
 
         main {
             flex: 1;
@@ -93,6 +98,58 @@
 
         .cart-icon i {
             transition: transform 0.2s ease;
+        }
+
+        /* =========================
+        NAVBAR LINK ACTIVE & HOVER
+        ========================= */
+        .navbar .nav-link {
+            color: #ffffff;
+            padding: 8px 14px;
+            border-radius: 10px;
+            transition: all 0.25s ease;
+        }
+
+        /* hover */
+        .navbar .nav-link:hover {
+            background-color: rgba(255,255,255,0.18);
+            color: #ffffff;
+        }
+
+        /* active page */
+        .navbar .nav-link.active {
+            background-color: rgba(0,0,0,0.28);
+            color: #ffffff;
+            font-weight: 600;
+        }
+
+        /* =========================
+        DROPDOWN TOGGLE (MASUK)
+        ========================= */
+        .navbar .dropdown-toggle:hover {
+            background-color: rgba(255,255,255,0.18);
+            border-radius: 10px;
+        }
+
+        .navbar .dropdown-toggle.show {
+            background-color: rgba(0,0,0,0.28);
+            border-radius: 10px;
+        }
+
+        /* =========================
+        CART ICON EFFECT
+        ========================= */
+        .cart-icon {
+            padding: 8px 12px;
+            border-radius: 10px;
+        }
+
+        .cart-icon:hover {
+            background-color: rgba(255,255,255,0.18);
+        }
+
+        .cart-icon:active {
+            background-color: rgba(0,0,0,0.28);
         }
 
         /* =========================
@@ -188,6 +245,10 @@
                 max-width: 100%;
             }
         }
+        * {
+            font-family: 'Karla', sans-serif !important;
+        }
+
 
     </style>
 
@@ -235,11 +296,13 @@
 
                 {{-- HOME --}}
                 <li class="nav-item">
-                    <a class="nav-link text-white fw-semibold"
-                       href="{{ route('home') }}">
+                    <a class="nav-link text-white fw-semibold
+                    {{ request()->routeIs('home') ? 'active' : '' }}"
+                    href="{{ route('home') }}">
                         Home
                     </a>
                 </li>
+
 
                 {{-- =====================
                    JIKA BELUM LOGIN
@@ -280,14 +343,16 @@
                 {{-- CART --}}
                 <li class="nav-item">
                     <a href="{{ route('user.riwayat') }}"
-                       class="nav-link position-relative cart-icon"
-                       title="Riwayat Penyewaan">
+                    class="nav-link position-relative cart-icon
+                    {{ request()->routeIs('user.riwayat') ? 'active' : '' }}"
+                    title="Riwayat Penyewaan">
                         <i class="bi bi-cart3"></i>
                         <span class="cart-badge">
                             {{ $cartCount ?? 0 }}
                         </span>
                     </a>
                 </li>
+
 
                 {{-- USER + LOGOUT --}}
                 <li class="nav-item dropdown">
@@ -331,7 +396,7 @@
 
             {{-- BRAND --}}
             <div class="col-md-4">
-                <img src="{{ asset('images/narelo.jpg') }}"
+                <img src="{{ asset('images/narelo.jpeg') }}"
                      alt="Narelo Adventure"
                      class="footer-logo mb-3">
 
