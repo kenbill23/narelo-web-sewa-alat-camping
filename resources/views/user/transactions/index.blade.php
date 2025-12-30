@@ -13,6 +13,7 @@
                     <thead class="table-light">
                         <tr>
                             <th width="50">No</th>
+                            <th>Nama Item</th>
                             <th>Tanggal Sewa</th>
                             <th>Tanggal Kembali</th>
                             <th>Total Bayar</th>
@@ -24,6 +25,17 @@
                     @forelse($transactions as $i => $t)
                         <tr>
                             <td>{{ $i+1 }}</td>
+
+                            <td>
+                                @foreach($t->items as $item)
+                                    <div class="fw-semibold">
+                                        {{ $item->item->nama_item }}
+                                        <span class="text-muted small">
+                                            (x{{ $item->qty }})
+                                        </span>
+                                    </div>
+                                @endforeach
+                            </td>
 
                             <td>
                                 {{ \Carbon\Carbon::parse($t->tanggal_sewa)
